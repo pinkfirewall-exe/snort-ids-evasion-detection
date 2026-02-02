@@ -40,10 +40,14 @@ All default Snort rules were disabled to observe baseline behaviour.
 
 For each technique, I followed an iterative process:
 
-i)	Run the attack with no custom rule.
+i) Run the attack with no custom rule.
+
 ii)	Observe Snort’s baseline behaviour, typically meaning no alert appeared.
-iii)	Create a rule tailored to the attack pattern.
+
+iii) Create a rule tailored to the attack pattern.
+
 iv)	Re-run the attack to confirm that Snort now detected it.
+
 v)	Evaluate the strengths and weaknesses of the resulting alert.
 
 ---
@@ -122,14 +126,14 @@ Example: Packet Fragmentation Rule
 # Detect non-initial IP fragments used for IDS evasion
 # Technique: Packet Fragmentation
 # ATT&CK: Defense Evasion
-
+```
 alert ip any any -> any any (
     msg:"EVASION: Fragmented packet (non-zero offset)";
     fragoffset:>0;
     sid:5002001;
     rev:1;
 )
-
+```
 All rules are documented in the rules/ directory with comments explaining:
 
 - the behaviour being detected
@@ -148,8 +152,10 @@ Each detection was validated by re-running the attack and observing real-time al
 ## MITRE ATT&CK Mapping
 
 ### Evasion Technique to the 	ATT&CK Technique / Tactic
-In packet fragmentation, the attack technique was	defense evasion
+In packet fragmentation, the attack technique was defense evasion
+
 In overlapping Fragmentation,	the attack technique was defense evasion
+
 In decoy scan,	the attack technique was T1046 – Network Service Scanning
 
 Mapping detections to MITRE ATT&CK helps align IDS coverage with real adversary tradecraft and improves detection strategy visibility.
