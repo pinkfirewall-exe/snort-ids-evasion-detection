@@ -152,11 +152,9 @@ Each detection was validated by re-running the attack and observing real-time al
 ## MITRE ATT&CK Mapping
 
 ### Evasion Technique to the 	ATT&CK Technique / Tactic
-In packet fragmentation, the attack technique was defense evasion
-
-In overlapping Fragmentation,	the attack technique was defense evasion
-
-In decoy scan,	the attack technique was T1046 – Network Service Scanning
+- In packet fragmentation, the attack technique was defense evasion
+- In overlapping Fragmentation,	the attack technique was defense evasion
+- In decoy scan,	the attack technique was T1046 – Network Service Scanning
 
 Mapping detections to MITRE ATT&CK helps align IDS coverage with real adversary tradecraft and improves detection strategy visibility.
 
