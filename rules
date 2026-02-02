@@ -1,1 +1,52 @@
+# Packet Fragmentation
+#############################################
+# Rule File: fragmentation.rules
+# Purpose  : Detect IP packet fragmentation
+#            used to evade IDS inspection
+# Technique: Packet Fragmentation
+# ATT&CK   : Defense Evasion
+#############################################
 
+alert ip any any -> any any (
+    msg:"EVASION: IP fragmented packet detected (non-zero fragment offset)";
+    fragoffset:>0;
+    metadata:attack_target network, tactic Defense-Evasion;
+    sid:5001001;
+    rev:1;
+)
+
+# Overlapping Fragmentation
+
+########################################################
+# Rule File: overlap_simulation.rules
+# Purpose  : Detect suspicious tiny fragmented packets
+#            that simulate overlapping fragmentation
+# Technique: Overlapping Fragmentation Simulation
+# ATT&CK   : Defense Evasion
+########################################################
+
+alert ip any any -> any any (
+    msg:"EVASION: Suspicious tiny fragmented packet (possible overlap evasion)";
+    fragbits:M;
+    dsize:<24;
+    metadata:attack_target network, tactic Defense-Evasion;
+    sid:5001002;
+    rev:1;
+)
+
+# Decoy Scan
+########################################################
+# Rule File: decoy_scan.rules
+# Purpose  : Detect decoy or distributed SYN port scans
+# Technique: Decoy Scan / Distributed Scanning
+# ATT&CK   : T1046 - Network Service Scanning
+########################################################
+
+alert tcp any any -> any any (
+    msg:"RECON: Possible decoy or distributed port scan detected";
+    flags:S;
+    detection_filter:track by_dst, count 30, seconds 5;
+    metadata:attack_target network, tactic Reconnaissance;
+    sid:5001003;
+    rev:1;
+)
