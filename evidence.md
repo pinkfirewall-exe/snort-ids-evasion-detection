@@ -6,11 +6,11 @@
 
 ---
 
-The -f flag forces Nmap to break packets into tiny IP fragments, usually 8-byte chunks.
+
 ![packet fragmentation command](https://github.com/user-attachments/assets/163f4a7d-5216-4a66-950a-0c3f3a60884a)
 
-*Figure 1 -  Packet fragmentation command.*
-
+*Figure 1 -  Packet fragmentation command.*<br>
+The -f flag forces Nmap to break packets into tiny IP fragments, usually 8-byte chunks.
 
 
 When I executed the fragmented scan with no custom rules present, Snort remained completely silent. Even though packet captures confirmed that fragments were arriving, Snort treated them as normal because there were no rules referencing fragment offsets. This showed very clearly how dependent Snort is on explicit signatures. Snort did not raise any alert during this phase because, without an explicit rule referencing fragment offsets, the engine treats fragmented packets as normal traffic. Although the frag3 preprocessor correctly reassembles fragments, it does not generate alerts unless supported by detection logic.
