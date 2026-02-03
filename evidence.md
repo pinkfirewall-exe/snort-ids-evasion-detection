@@ -1,7 +1,7 @@
 # Evidence
 
 ---
-
+The -f flag forces Nmap to break packets into tiny IP fragments, usually 8-byte chunks.
 ![packet fragmentation command](https://github.com/user-attachments/assets/163f4a7d-5216-4a66-950a-0c3f3a60884a)
 
 *Figure 1 -  Packet fragmentation command.*
