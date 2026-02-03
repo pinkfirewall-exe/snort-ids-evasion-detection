@@ -1,12 +1,20 @@
 # Evidence
 
 ---
+
+# Packet Fragmentation
+
+---
+
 The -f flag forces Nmap to break packets into tiny IP fragments, usually 8-byte chunks.
 ![packet fragmentation command](https://github.com/user-attachments/assets/163f4a7d-5216-4a66-950a-0c3f3a60884a)
 
 *Figure 1 -  Packet fragmentation command.*
 
-
+Before adding the custom rule, Snort received the fragmented packets but did not raise an alert, as shown below. 
+This happened because:
+- Snort uses stream reassembly, but default signatures do not treat unusually small fragments as suspicious.
+-	Fragmented packets may not match any known attack pattern without explicit rule logic.
 ![packet fragmentation before](https://github.com/user-attachments/assets/6b8b2f04-4cf2-4e3a-a40f-c83eddb0c259)
 
 *Figure 2 - Packet fragmentation before rule implementation.*
