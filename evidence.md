@@ -10,7 +10,7 @@
 ![packet fragmentation command](https://github.com/user-attachments/assets/163f4a7d-5216-4a66-950a-0c3f3a60884a)
 
 *Figure 1 -  Packet fragmentation command.*<br>
-The -f flag forces Nmap to break packets into tiny IP fragments, usually 8-byte chunks.<br>
+The -f flag forces Nmap to break packets into tiny IP fragments, usually 8-byte chunks.<br><br>
 
 
 ![packet fragmentation before](https://github.com/user-attachments/assets/6b8b2f04-4cf2-4e3a-a40f-c83eddb0c259)
@@ -23,7 +23,7 @@ To surface fragmented packets in alerts, I added:<br>
 ![packet fragmentation rule](https://github.com/user-attachments/assets/b55adaca-4143-46a9-93db-ed51b6f4afc6)
 
 *Figure 3 - Packet fragmentation rule.*<br>
-The fragoffset:>0 tells Snort to alert whenever a packet is not the first fragment. This detects attempts to hide a malicious payload in later fragment segments. The custom message clearly identifies the evasion attempt.<br>
+The fragoffset:>0 tells Snort to alert whenever a packet is not the first fragment. This detects attempts to hide a malicious payload in later fragment segments. The custom message clearly identifies the evasion attempt.<br><br>
 
 
 
