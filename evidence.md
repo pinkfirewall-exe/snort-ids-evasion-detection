@@ -11,20 +11,24 @@ The -f flag forces Nmap to break packets into tiny IP fragments, usually 8-byte 
 
 *Figure 1 -  Packet fragmentation command.*
 
-Before adding the custom rule, Snort received the fragmented packets but did not raise an alert, as shown below. 
-This happened because:
-- Snort uses stream reassembly, but default signatures do not treat unusually small fragments as suspicious.
--	Fragmented packets may not match any known attack pattern without explicit rule logic.
+
+
+When I executed the fragmented scan with no custom rules present, Snort remained completely silent. Even though packet captures confirmed that fragments were arriving, Snort treated them as normal because there were no rules referencing fragment offsets. This showed very clearly how dependent Snort is on explicit signatures. Snort did not raise any alert during this phase because, without an explicit rule referencing fragment offsets, the engine treats fragmented packets as normal traffic. Although the frag3 preprocessor correctly reassembles fragments, it does not generate alerts unless supported by detection logic.
 ![packet fragmentation before](https://github.com/user-attachments/assets/6b8b2f04-4cf2-4e3a-a40f-c83eddb0c259)
 
 *Figure 2 - Packet fragmentation before rule implementation.*
 
 
+
+To surface fragmented packets in alerts, I added:
 ![packet fragmentation rule](https://github.com/user-attachments/assets/b55adaca-4143-46a9-93db-ed51b6f4afc6)
 
 *Figure 3 - Packet fragmentation rule.*
+The fragoffset:>0 tells Snort to alert whenever a packet is not the first fragment. This detects attempts to hide malicious payload in later fragment segments. The custom message clearly identifies the evasion attempt.
 
 
+
+After enabling this rule, Snort started generating alerts for each fragmented packet as soon as I re-ran the scan. This validated that the rule successfully exposed behaviour that Snort previously ignored.
 ![packet fragmentation after](https://github.com/user-attachments/assets/b2004a84-984c-4127-aa2e-26528699330a)
 
 *Figure 4 - Packet fragmentation after rule implementation.*
