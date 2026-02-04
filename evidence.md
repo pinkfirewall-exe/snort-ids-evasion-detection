@@ -75,7 +75,7 @@ Decoy scanning complicates attribution by mixing traffic from multiple spoofed I
 This instructs Nmap to include five fake IP addresses as “decoys,” all of which appear in the packet headers as potential scanning sources. For an IDS, this means it becomes difficult to determine which IP is performing reconnaissance.<br>
 This makes the victim think multiple hosts (decoys) are scanning it while masking the attacker’s real IP. It confuses the IDS because:
 -	Multiple source IP addresses appear simultaneously.
--	It becomes unclear which one is the true attacker.
+-	It becomes unclear which one is the true attacker.<br><br><br>
 
 
 ![decoy scanning before](https://github.com/user-attachments/assets/7659d99f-598c-4684-9d48-c6097f5f446a)
