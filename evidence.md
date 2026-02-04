@@ -42,7 +42,7 @@ Overlapping fragmentation is a more advanced evasion strategy where fragments ar
 
 *Figure 5 - Overlapping fragmentation command.*<br>
 Since generating precise overlapping fragments requires custom packet crafting, I simulated the behaviour using Nmap’s ability to produce excessively small fragments.<br>
-Setting a very low MTU value forces packets to be split into numerous fragments, which can stress the IDS’s reassembly logic and resemble overlapping or disordered fragment behaviour.<br><br>
+Setting a very low MTU value forces packets to be split into numerous fragments, which can stress the IDS’s reassembly logic and resemble overlapping or disordered fragment behaviour.<br><br><br>
 
 ![overlapping fragmentation before](https://github.com/user-attachments/assets/416af136-d530-495a-8179-a2b5d7f339dd)
 
@@ -66,7 +66,7 @@ After reloading Snort with the new rule, the overlapping fragmentation simulatio
 
 ---
 
-##Decoy Scanning<br>
+## Decoy Scanning<br>
 Decoy scanning complicates attribution by mixing traffic from multiple spoofed IP addresses alongside the real attacker. Decoy scanning complicates attribution because the IDS sees multiple spoofed IP sources, making it difficult to determine which host initiated the reconnaissance, thereby reducing confidence in the alert data.<br><br>
 
 ![decoy scanning command](https://github.com/user-attachments/assets/e41b26b7-19b9-42d5-bcce-ca51a892a41f)
